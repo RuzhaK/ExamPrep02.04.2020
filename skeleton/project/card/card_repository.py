@@ -17,13 +17,19 @@ class CardRepository():
         if card=="":
             raise ValueError("Card cannot be an empty string!")
         else:
-            existing_card = [x for x in self.cards if x.name == card][0]
-            if existing_card:
-                self.cards.remove(existing_card)
-                self.count-=1
+            try:
+                existing_card = [x for x in self.cards if x.name == card][0]
+                if existing_card:
+                    self.cards.remove(existing_card)
+                    self.count-=1
+            except IndexError:
+                pass
 
     def find(self, name: str):
-        # todo tuk ne triabwa li da e s try?
-        existing_card=[x for x in self.cards if x.name == name][0]
-        if existing_card:
-            return existing_card
+        # todo tuk ne triabwa li da e s try? ne
+        try:
+            existing_card=[x for x in self.cards if x.name == name][0]
+            if existing_card:
+                return existing_card
+        except IndexError:
+            pass

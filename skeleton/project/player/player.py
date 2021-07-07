@@ -62,3 +62,6 @@ class Player(ABC):
     def __validate_damage(damage_points):
         if damage_points<0:
             raise ValueError( "Damage points cannot be less than zero.")
+
+    def total_damage(self):
+        return sum([card.damage_points for card in self.card_repository.cards])

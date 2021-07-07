@@ -7,7 +7,9 @@ class PlayerRepository():
         self.players = []
 
     def add(self,player: Player):
-        if player not in self.players:
+        names=[player.username for player in self.players]
+        # names=list(map(lambda x:x.name, self.players))
+        if player.username not in names:
             self.players.append(player)
             self.count+=1
         else:
@@ -18,9 +20,13 @@ class PlayerRepository():
         if player=="":
             raise ValueError("Player cannot be an empty string!")
         else:
-            if player in self.players:
-                self.players.remove(player)
+            try:
+                player_object=[p for p in self.players if p.username==player][0]
+                # player_object=list(filter(lambda x: x.username==player, self.players))[0]
+                self.players.remove(player_object)
                 self.count-=1
+            except IndexError:
+                pass
 
     def find(self,username: str):
         player=[x for x in self.players if x.username==username][0]
