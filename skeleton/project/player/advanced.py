@@ -5,3 +5,5 @@ class Advanced(Player):
 
     def __init__(self, username):
         super().__init__(username, self.initial_health_points)
+
+

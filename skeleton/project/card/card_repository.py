@@ -6,30 +6,28 @@ class CardRepository():
         self.cards = []
 
     def add(self, card:Card):
-        existing_card=[x for x in self.cards if x.name == card.name][0]
-        if existing_card:
+        names=[x.name for x in self.cards]
+        if card.name in names:
             raise ValueError(f"Card {card.name} already exists!")
         else:
             self.cards.append(card)
             self.count+=1
 
-    def remove(self, card: str):
-        if card=="":
+    def remove(self, card_name: str):
+        if card_name=="":
             raise ValueError("Card cannot be an empty string!")
         else:
-            try:
-                existing_card = [x for x in self.cards if x.name == card][0]
-                if existing_card:
-                    self.cards.remove(existing_card)
-                    self.count-=1
-            except IndexError:
-                pass
+
+            card_to_remove=self.find(card_name)
+
+            self.cards.remove(card_to_remove)
+            self.count-=1
+
 
     def find(self, name: str):
-        # todo tuk ne triabwa li da e s try? ne
-        try:
-            existing_card=[x for x in self.cards if x.name == name][0]
-            if existing_card:
-                return existing_card
-        except IndexError:
-            pass
+
+
+        existing_card=[x for x in self.cards if x.name == name][0]
+
+        return existing_card
+

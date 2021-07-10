@@ -16,19 +16,21 @@ class PlayerRepository():
             raise ValueError(f"Player {player.username} already exists!")
 
 
-    def remove(self,player: str):
-        if player=="":
+    def remove(self,player_name: str):
+        if player_name=="":
             raise ValueError("Player cannot be an empty string!")
         else:
-            try:
-                player_object=[p for p in self.players if p.username==player][0]
-                # player_object=list(filter(lambda x: x.username==player, self.players))[0]
-                self.players.remove(player_object)
-                self.count-=1
-            except IndexError:
-                pass
+
+            player_object=[p for p in self.players if p.username==player_name][0]
+            # player_object=list(filter(lambda x: x.username==player, self.players))[0]
+            self.players.remove(player_object)
+            self.count-=1
+
 
     def find(self,username: str):
         player=[x for x in self.players if x.username==username][0]
         if player:
             return player
+
+# r=PlayerRepository()
+# print(r.players)
