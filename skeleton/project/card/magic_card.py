@@ -10,3 +10,5 @@ class MagicCard(Card):
 # m.damage_points=-10
 # m.health_points=-1
 # print(m.damage_points)
+a=5
+print(a)
